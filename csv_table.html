@@ -1,0 +1,177 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        fieldset.scheduler-border {
+            border: 1px groove #ddd !important;
+            padding: 0 0.5em 0.5em 0.5em !important;
+            margin: 0 0 0.5em 0 !important;
+            box-shadow: 0px 0px 0px 0px #000;
+        }
+
+        legend.scheduler-border {
+            font-size: 1.2em !important;
+            font-weight: bold !important;
+            text-align: left !important;
+            width: auto;
+            padding: 0 2px;
+            border-bottom: none;
+        }
+
+        /*Tatyana's CSS starts here*/
+        .jumbotron.pageHeader {
+            border-radius: 0;
+            background-color: #333;
+            color: #d8d8d8;
+            margin-bottom: 0;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        .pageHeader h1 {
+            font-weight: 300;
+            margin: 0;
+            font-size: 36px;
+        }
+
+        .container-fluid.pageSubheader {
+            margin-bottom: 5px;
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #e3e3e3;
+            text-align: center;
+        }
+
+        h2 {
+            margin: 10px 0;
+            font-weight: 300;
+            font-size: 26px;
+        }
+
+        h3 {
+            margin-top: 5px;
+            display: inline-block;
+            margin-bottom: 2px;
+        }
+
+        sup {
+            background-color: #ffff66;
+            margin: 0 5px;
+        }
+
+        .bg-gray {
+            background-color: #f0f0f0;
+            border: 1px solid #e3e3e3;
+            padding: 0 15px;
+        }
+
+        .bg-gray hr {
+            border-top: 1px solid rgb(51, 51, 51);
+            margin: 5px 0;
+        }
+
+        .bg-gray .fa-chevron-down {
+            color: rgb(51, 51, 51);
+        }
+
+        .bg-gray h3 {
+            margin: 5px 0;
+        }
+
+        .headerBlue {
+            color: #286090;
+        }
+
+        .nopad {
+            padding: 0;
+        }
+
+        .nopadL {
+            padding-left: 0;
+        }
+
+        .nopadR {
+            padding-right: 0;
+        }
+
+        .fa-chevron-down {
+            margin-left: 30px;
+            color: #286090;
+        }
+
+        .w100 {
+            width: 100%;
+        }
+
+        .form-group>.form-group:first-child .row {
+            padding-bottom: 10px;
+        }
+
+        .form-group>.form-group:first-child .row:last-child {
+            padding-bottom: 0px;
+        }
+
+        .form-group .col-xs-4 input,
+        .form-group .col-xs-9 textarea {
+            width: 100%;
+        }
+
+        .noverticalspace {
+            margin: 1px;
+        }
+
+        #chkHeader {
+            box-shadow: none;
+            margin: 0;
+        }
+
+        @media only screen and (min-width: 992px) {
+            body>.container-fluid {
+                min-width: 1188px;
+                /*adjusted for ad widthe*/
+            }
+        }
+
+        thead {
+            background-color: #f1f1f1;
+        }
+
+        table {
+            font-size: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+    Filename {{ .Filename }}
+    <table class="table table-bordered table-hover table-condensed">
+        <thead>
+            <tr>
+                <th title="Line">#</th>
+                <th title="Timestamp">Timestamp</th>
+                <th title="Cluster">Cluster</th>
+                <th title="Hostname">Hostname</th>
+                <th title="Error Level">Error Level</th>
+                <th title="Subsys">Subsystem</th>
+                <th title="Text">Text</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ range $i,$e := .Records }}
+            <tr>
+                <td>{{ $i}}</td>
+                <td>{{ $e.Timestamp}}</td>
+                <td>{{ $e.Cluster}}</td>
+                <td style="background-color:{{ $e.Color }};">{{ $e.Hostname}}</td>
+                <td>{{ $e.ErrorLevel}}</td>
+                <td>{{ $e.Subsystem}}</td>
+                <td>{{ $e.Text}}</td>
+            </tr>
+            {{end}}
+        </tbody>
+    </table>
+</body>
+
+</html>
